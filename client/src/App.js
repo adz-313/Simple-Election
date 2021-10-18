@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Election from "./contracts/Election.json";
 import getWeb3 from "./getWeb3";
+import { Container } from 'semantic-ui-react'
 
-import { Typography, Container } from '@material-ui/core';
 import CandidateDetails from './components/CandidateDetails';
 import VoteForm from './components/VoteForm';
+import Navbar from './components/Navbar';
+import SVoteForm from './components/VoteForm';
 
 const App = () => {
 
@@ -56,10 +58,9 @@ const App = () => {
 
   return (
     <Container>
-      <Typography variant="h2">Election</Typography>
-      <CandidateDetails candidate1={candidate1} candidate2={candidate2} />
-      <VoteForm vote={vote} />
-      <Typography variant="h6">{currentAccount}</Typography>
+        <Navbar currentAccount={currentAccount}/>
+        <CandidateDetails candidate1={candidate1} candidate2={candidate2} />
+        <VoteForm vote={vote} />
     </Container>
   )
 }

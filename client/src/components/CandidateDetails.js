@@ -1,14 +1,10 @@
-import * as React from 'react';
-
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography} from '@material-ui/core';
-
-function createData(id, name, voteCnt) {
-  return { id, name, voteCnt };
-}
-
-
+import React from 'react'
+import { Table } from 'semantic-ui-react'
 
 const CandidateDetails = ({candidate1, candidate2}) => {
+    function createData(id, name, voteCnt) {
+        return { id, name, voteCnt };
+    }
 
     const rows = [
         createData(candidate1.id, candidate1.name, candidate1.voteCount),
@@ -16,29 +12,26 @@ const CandidateDetails = ({candidate1, candidate2}) => {
     ];
 
     return (
-    <>
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-                <TableRow>
-                <TableCell>Candidate ID</TableCell>
-                <TableCell align="right">Candidate Name</TableCell>
-                <TableCell align="right">Vote Count</TableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {rows.map((row) => (
-                <TableRow key={row.id} >
-                    <TableCell component="th" scope="row">{row.id}</TableCell>
-                    <TableCell align="right">{row.name}</TableCell>
-                    <TableCell align="right">{row.voteCnt}</TableCell>
-                </TableRow>
-                ))}
-            </TableBody>
-            </Table>
-        </TableContainer>
-    </>
-    );
+        <Table celled>
+            <Table.Header>
+            <Table.Row>
+                <Table.HeaderCell>Candidate ID</Table.HeaderCell>
+                <Table.HeaderCell>Candidate Name</Table.HeaderCell>
+                <Table.HeaderCell>Vote Count</Table.HeaderCell>
+            </Table.Row>
+            </Table.Header>
+
+            <Table.Body>
+            {rows.map((row) => (
+                <Table.Row>
+                    <Table.Cell>{row.id}</Table.Cell>
+                    <Table.Cell>{row.name}</Table.Cell>
+                    <Table.Cell>{row.voteCnt}</Table.Cell>
+                </Table.Row>
+            ))}
+            </Table.Body>
+        </Table>
+    )
 }
 
 export default CandidateDetails

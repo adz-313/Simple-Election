@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
-import { Container, Grid, InputLabel, MenuItem, FormControl, Select, Button } from '@material-ui/core';
+import React, {useState} from 'react'
+import { Form, Select, Button, Grid } from 'semantic-ui-react'
 
-const VoteForm = ({ vote }) => {
+const VoteForm = ({vote}) => {
+    const [selectedCandidate, setSelectedCandidate] = useState(1);
 
-    const [selectedCandidate, setSelectedCandidate] = useState('');
-
-    const handleChange = (event) => {
-        setSelectedCandidate(event.target.value);
-        
+    const handleChange = (event, {value}) => {
+        setSelectedCandidate(value);
+        console.log(value);
     }
 
     const handleSubmit = () => {
@@ -15,29 +14,20 @@ const VoteForm = ({ vote }) => {
         vote(selectedCandidate);
     }
 
+    const candidateOptions = [
+        {key : 1, value: 1, text: 'Candidate 1'},
+        {key : 2, value: 2, text: 'Candidate 2'}
+    ]
+
     return (
-        <Container>
-            <Grid container>
-                <Grid item lg={10}>
-                    <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Candidate</InputLabel>
-                        <Select
-                            value={selectedCandidate}
-                            label="Candidate"
-                            onChange={handleChange}
-                        >
-                            <MenuItem value={1}>Candidate 1</MenuItem>
-                            <MenuItem value={2}>Candidate 2</MenuItem>
-                        </Select>
-                    </FormControl>  
-                </Grid>
-                <Grid item> 
-                    <Container>
-                    <Button variant="contained" onClick={handleSubmit}>Vote</Button> 
-                    </Container>
-                </Grid>
-            </Grid>
-        </Container>
+        <Form onSubmit={handleSubmit}>
+            <Form.Field>
+                <Select placeholder='Select your candidate' onChange={handleChange} options={candidateOptions} />
+            </Form.Field>
+            <Form.Field>
+                <Button type='submit' primary>Submit</Button>
+            </Form.Field>
+        </Form>
     )
 }
 

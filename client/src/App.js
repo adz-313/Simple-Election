@@ -6,7 +6,6 @@ import { Container } from 'semantic-ui-react'
 import CandidateDetails from './components/CandidateDetails';
 import VoteForm from './components/VoteForm';
 import Navbar from './components/Navbar';
-import SVoteForm from './components/VoteForm';
 
 const App = () => {
 
